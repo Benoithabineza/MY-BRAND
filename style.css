@@ -1,0 +1,125 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+   background-color: black;
+   color: white;
+   font-size: 1.1rem;
+}
+
+/* this chznges nav bar */
+.nav{
+    background-color: #751212;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    margin: auto;
+}
+.nav-links{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+li{
+    margin-right: 1.5rem;
+}
+a{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* hover effect */
+a:hover{
+    color: yellow;
+}
+
+/* landing page*/
+.landing-page{
+    max-width: 1300px;
+    margin: auto;
+    margin-top: 2rem;
+
+}
+.intro{
+    font-size: 3rem;
+    font-weight: bold;
+}
+.red{
+    color: red;
+}
+.yellow{
+    color: yellow;
+}
+.intro-image{
+    width: 20rem;
+    height: 25rem;
+    margin-top: 2rem;
+}
+.landing-page{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    
+}
+.left{
+    border-right : rgba(207, 12, 12, 0.849) 5px solid;
+    margin: auto 2rem;
+}
+.right{
+margin: auto
+;
+}
+.about-me{
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: yellow;
+}
+.quote{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+/* sociam media */
+.social-media{
+    font-size: 3rem;
+    text-align: center;
+}
+/* contact form */
+.title{
+    text-align: center;
+}
+.contact-form{
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0 0 5px white;
+    padding: 1rem;
+    /* text-align: center; */
+}
+input, textarea{
+    padding: 0.8rem;
+    border-radius: 5px;
+    width: 95%;
+    margin: 1rem  0 1rem 0 ;
+    font-size: 1rem;
+}
+.submit{
+    font-size: 2rem;
+    padding: .7rem 2.4rem;
+    background: yellow;
+    border: none;
+    border-radius: 5px ;
+  
+}
+/* about poage */
+.about-para{
+    font-size: 1.6rem;
+}
+/* experience page */
+.experience{
+    list-style: circle;
+}
+.experience li{
+    margin-bottom: 1rem;
+}
