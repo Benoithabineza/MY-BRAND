@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <title>MY BRAND| Welcome</title>
+</head>
+<body>
+    <nav class="nav"> 
+        <h1>BENOIT</h1>
+        <ul class="nav-links">
+            <li><a href="./dashboard.html">Dashboard</a> </li>
+            <li><a href="./about.html">New Post</a></li>
+            <li><a href="#">Contacts Form</a> </li>
+            <li class="logout">Logout </li>
+
+
+        </ul>
+    </nav>
+    <!-- nav bar ends here -->
+    <div class="queries-container">
+        <!-- <div class="querie">
+            <div class="top">
+                <h2>kamanzi</h2>
+                <h2>vincent</h2>
+                <p class="time">10days ago</p>
+            </div>
+            <p class="message">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum, trum sapiente 
+            </p>
+            <div class="buttom">
+                <h2 class="email">kaka@gmail.com</h2>
+                <button class="submit delete">Delete</button>
+
+            </div>
+        </div> -->
+    </div>
+
+<!-- FOOTER -->
+<footer class="footer"> 
+
+<p class="copy-right">&COPY;2020 by Ir.Benoit</Ir></p>
+
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-auth.js"></script>
+<script src="../JS/firebase.js"></script>
+
+<script>
+
+
+const db= firebase.firestore()
+const auth = firebase.auth()
+
+
+const queriesContainer=document.querySelector(".queries-container")
+
+
+    db.collection("queries")
+        .onSnapshot(function(comments) {
+        let html=""
+        comments.forEach(function(comment) {
+            // doc.data() is never undefined for query doc snapshots
+            // reading and displaying data
+html+=`<div class="querie">
+            <div class="top">
+                <h2>${comment.data().firstName}</h2>
+                <h2>${comment.data().lastName}</h2>
+                <p class="time">${comment.data().time}</p>
+            </div>
+            <p class="message">
+                ${comment.data().message}  
+            </p>
+            <div class="buttom">
+                <h2 class="email">${comment.data().email}</h2>
+                <button class="submit delete" onclick="deleteQuery('${comment.id}')" >Delete</button>
+
+            </div>
+        </div>`
+            
+        });
+        queriesContainer.innerHTML=html
+    })
+    
+    
+// deleteing a query
+
+
+    function deleteQuery(id){
+        db.collection("queries").doc(id).delete().then(function() {
+    console.log("Document successfully deleted!");
+}).catch(function(error) {
+    console.error("Error removing document: ", error);
+});
+    }
+
+
+    
+    const logoutBtn= document.querySelector(".logout")
+
+
+
+logoutBtn.addEventListener("click", function(){
+  console.log("logout")
+    auth.signOut().then(function() {
+// Sign-out successful.
+}).then(function(){
+  location.href="login.html"
+})
+.catch(function(error) {
+// An error happened.
+});
+})
+  
+    
+</script>
+
+
+
+
+
+</body>
+</html>

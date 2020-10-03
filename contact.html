@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <title>Contact Me</title>
 </head>
 <body>
@@ -14,22 +16,24 @@
             <li><a href="./index.html">Home</a> </li>
             <li><a href="./about.html">About</a></li>
             <li><a href="./Experience.html">Experience</a> </li>
-            <li><a href="#">Blog</a> </li>
+            <li><a href="./blog/blog.html">Blog</a> </li>
             <li><a href="#">Contacts</a> </li>
+            <li><a href="./admin/login.html">Login</a> </li>
+
 
         </ul>
     </nav>
     <!-- contact form -->`
     <h1 class="title">CONTACT</h1>
-    <form class="contact-form">
+    <form class="contact-form" method="POST">
         <p class="contact">First Name</p>
         <input type="text"
-        name="first-name"
+        name="firstName"
         placeholder="Please enter your First Name"
         /> 
         <p class="contact">Last Name</p>
         <input type="text"
-        name="last-name"
+        name="lastName"
         placeholder="Please enter your Last  Name"
         /> 
         <p class="contact">Email</p>
@@ -43,6 +47,47 @@
         <button class="submit" type="submit">Submit</button>
     
     </form>
-    
+    <!-- FOOTER -->
+<footer class="footer">
+
+
+    <div class="social-media">
+        <a href="https://github.com/Benoithabineza" target="_blank"> <i class="fa fa-github-square"></i></a> 
+         <i class="fa fa-instagram"></i>
+         <i class="fa fa-twitter-square"></i>
+     </div>
+
+<p class="copy-right">&COPY;2020 by Ir.Benoit</Ir></p>
+
+</footer>
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-firestore.js"></script>
+    <script src="./JS/firebase.js"></script>
+    <script>
+
+const db= firebase.firestore()
+// selecting form from the dom
+const form = document.querySelector(".contact-form")
+
+form.addEventListener("submit",function(e){
+    e.preventDefault()
+    // console.log("this is clicked")
+db.collection("queries").add({
+    firstName:form.firstName.value,
+    lastName:form.lastName.value,
+    email:form.email.value,
+    message:form.message.value,
+    time: Date.now()
+}).then(function(){
+    alert("sent successfully")
+})
+.catch(function(error) {
+    console.log("Error adding document: ", error); 
+});
+
+})
+
+
+    </script>
 </body>
 </html>
