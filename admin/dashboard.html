@@ -72,7 +72,7 @@ const posts= data.posts
 let postHtml=""
 posts.forEach(post=>{
   postHtml +=` <div class="card">
-        <a href="../blog/readpost.html?id=${post._id}"><img src="../images/rwigema.jpeg" alt="post image"></a>
+        <a href="../blog/readpost.html?id=${post._id}"><img src="${post.picture}" alt="post image"></a>
         <a href="../blog/readpost.html?id=${post._id}"><h2 class="post-title">${post.title}</h2></a>
         <p class="time">5 days ago</p>
         <div class="details">

@@ -53,7 +53,7 @@
         res.json().then(data=>{
             const post = data.post
           const readBlog= document.querySelector(".read-blog")
-readBlog.innerHTML=  `<img src="../images/rwigema.jpeg" alt="post image">
+readBlog.innerHTML=  `<img src="${post.picture}" alt="post image">
     <h2 class="post-title read-title">${post.title}</h2>
    
     <div class="post-body">

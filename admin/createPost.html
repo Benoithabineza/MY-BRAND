@@ -44,17 +44,17 @@ const form = document.querySelector("form")
 
 form.addEventListener('submit' , async (e)=> {
   e.preventDefault();
+const fd =new FormData()
+fd.append("picture", form.picture.files[0])
+fd.append("title",form.title.value)
+fd.append("body",form.body.value)
 
 try {
   const result= await fetch('https://benoitbrand.herokuapp.com/createArticle', {
   method: 'post',
-  headers: {
-    'content-Type': 'application/json'
+  headers: { 
   },
-  body: JSON.stringify({
-    title:form.title.value,
-    body: form.body.value
-  }),
+  body: fd
 })
 const data = await result.json()
 location.href="dashboard.html"
