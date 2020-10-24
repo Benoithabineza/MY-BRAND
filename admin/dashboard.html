@@ -21,7 +21,7 @@
     </nav>
     
     <section class="post-container">
-      <div class="card">
+      <!-- <div class="card">
         <a href="../blog/readpost.html"><img src="../images/rwigema.jpeg" alt="post image"></a>
         <a href="../blog/readpost.html"><h2 class="post-title">Lorem ipsum dolor sit amet consecteturagnam nulla consequatur!</h2></a>
         <p class="time">5 days ago</p>
@@ -34,77 +34,8 @@
          <a href="./edit.html"> <button class="submit-btn small-btn">Edit</button></a>
           <button class="submit-btn small-btn">Delete</button>
         </div>
-    </div>  
-    <div class="card">
-      <a href="../blog/readpost.html"><img src="../images/rwigema.jpeg" alt="post image"></a>
-      <a href="../blog/readpost.html"><h2 class="post-title">Lorem ipsum dolor sit amet consecteturagnam nulla consequatur!</h2></a>
-      <p class="time">5 days ago</p>
-      <div class="details">
-          <p class="one-detail"><span><i class="fa fa-thumbs-up"></i></span> 3</p>
-          <p class="one-detail"><span><i class="fa fa-comments"></i></span>6</p>
-          <p class="one-detail"><span><i class="fa fa-eye"></i></span>9</p>
-      </div>
-      <div class="option-btns">
-        <a href="./edit.html"><button class="submit-btn small-btn">Edit</button></a>
-        <button class="submit-btn small-btn">Delete</button>
-      </div>
-  </div> 
-   <div class="card">
-        <a href="../blog/readpost.html"><img src="../images/rwigema.jpeg" alt="post image"></a>
-        <a href="../blog/readpost.html"><h2 class="post-title">Lorem ipsum dolor sit amet consecteturagnam nulla consequatur!</h2></a>
-        <p class="time">5 days ago</p>
-        <div class="details">
-            <p class="one-detail"><span><i class="fa fa-thumbs-up"></i></span> 3</p>
-            <p class="one-detail"><span><i class="fa fa-comments"></i></span>6</p>
-            <p class="one-detail"><span><i class="fa fa-eye"></i></span>9</p>
-        </div>
-        <div class="option-btns">
-          <a href="./edit.html"><button class="submit-btn small-btn">Edit</button></a>
-          <button class="submit-btn small-btn">Delete</button>
-        </div>
-    </div>
-    <div class="card">
-      <a href="../blog/readpost.html"><img src="../images/rwigema.jpeg" alt="post image"></a>
-      <a href="../blog/readpost.html"><h2 class="post-title">Lorem ipsum dolor sit amet consecteturagnam nulla consequatur!</h2></a>
-      <p class="time">5 days ago</p>
-      <div class="details">
-          <p class="one-detail"><span><i class="fa fa-thumbs-up"></i></span> 3</p>
-          <p class="one-detail"><span><i class="fa fa-comments"></i></span>6</p>
-          <p class="one-detail"><span><i class="fa fa-eye"></i></span>9</p>
-      </div>
-      <div class="option-btns">
-       <a href="./edit.html"> <button class="submit-btn small-btn">Edit</button></a>
-        <button class="submit-btn small-btn">Delete</button>
-      </div>
-  </div>
-  <div class="card">
-    <a href="../blog/readpost.html"><img src="../images/rwigema.jpeg" alt="post image"></a>
-    <a href="../blog/readpost.html"><h2 class="post-title">Lorem ipsum dolor sit amet consecteturagnam nulla consequatur!</h2></a>
-    <p class="time">5 days ago</p>
-    <div class="details">
-        <p class="one-detail"><span><i class="fa fa-thumbs-up"></i></span> 3</p>
-        <p class="one-detail"><span><i class="fa fa-comments"></i></span>6</p>
-        <p class="one-detail"><span><i class="fa fa-eye"></i></span>9</p>
-    </div>
-    <div class="option-btns">
-     <a href="./edit.html"> <button class="submit-btn small-btn">Edit</button></a>
-      <button class="submit-btn small-btn">Delete</button>
-    </div>
-</div>
-<div class="card">
-  <a href="../blog/readpost.html"><img src="../images/rwigema.jpeg" alt="post image"></a>
-  <a href="../blog/readpost.html"><h2 class="post-title">Lorem ipsum dolor sit amet consecteturagnam nulla consequatur!</h2></a>
-  <p class="time">5 days ago</p>
-  <div class="details">
-      <p class="one-detail"><span><i class="fa fa-thumbs-up"></i></span> 3</p>
-      <p class="one-detail"><span><i class="fa fa-comments"></i></span>6</p>
-      <p class="one-detail"><span><i class="fa fa-eye"></i></span>9</p>
-  </div>
-  <div class="option-btns">
-   <a href="./edit.html"> <button class="submit-btn small-btn">Edit</button></a>
-    <button class="submit-btn small-btn">Delete</button>
-  </div>
-</div>
+    </div>   -->
+
     </section>
 
 <!-- FOOTER -->
@@ -133,6 +64,41 @@ logoutBtn.addEventListener("click", function(){
 // An error happened.
 });
 })
+
+fetch("https://benoitbrand.herokuapp.com/fetchArticles").then(res=>{
+  res.json().then(data=>{
+const posts= data.posts
+
+let postHtml=""
+posts.forEach(post=>{
+  postHtml +=` <div class="card">
+        <a href="../blog/readpost.html?id=${post._id}"><img src="../images/rwigema.jpeg" alt="post image"></a>
+        <a href="../blog/readpost.html?id=${post._id}"><h2 class="post-title">${post.title}</h2></a>
+        <p class="time">5 days ago</p>
+        <div class="details">
+            <p class="one-detail"><span><i class="fa fa-thumbs-up"></i></span> 3</p>
+            <p class="one-detail"><span><i class="fa fa-comments"></i></span>6</p>
+            <p class="one-detail"><span><i class="fa fa-eye"></i></span>9</p>
+        </div>
+        <div class="option-btns">
+         <a href="./edit.html?id=${post._id}"> <button class="submit-btn small-btn">Edit</button></a>
+          <button class="submit-btn small-btn" onclick="deletePost('${post._id}')">Delete</button>
+        </div>
+    </div> `
+})
+const postContainer = document.querySelector(".post-container")
+postContainer.innerHTML=postHtml
+  })
+})
+
+function deletePost(id){
+fetch(`https://benoitbrand.herokuapp.com/deleteArticle/${id}`,{
+  method:"delete"
+}).then(data=>{
+  location.reload()
+}
+)
+}
 </script>
 
 

@@ -25,13 +25,12 @@
     </nav>
     <section class="create">
         <h2 class="main-header">Create new post</h2>
-        <form class="new-post">
+      <form  class=“form” method=“POST”>
         <input type="text" class="title" name="title" placeholder="Enter post's title here..">
         <input type="file" name="picture" class="file">
-        <div id="summernote"></div>
-
+        <textarea name="body" id="" cols="30" rows="10"></textarea>
         <button type="submit" class="submit-btn">Create</button>
-    </form>
+     </form>
     </section>
 
     <footer class="footer"> 
@@ -39,21 +38,35 @@
         <p class="copy-right">&COPY;2020 by Ir.Benoit</Ir></p>
         </footer>
 
-    <script>
-      $('#summernote').summernote({
-        placeholder: 'Your body goes here...',
-        tabsize: 2,
-        height: 300,
-        toolbar: [
-          ['style', ['style']],
-          ['font', ['bold', 'underline', 'clear']],
-          ['color', ['color']],
-          ['para', ['ul', 'ol', 'paragraph']],
-          ['table', ['table']],
-          ['insert', ['link', 'picture', 'video']],
-          ['view', ['fullscreen', 'codeview', 'help']]
-        ]
-      });
-    </script>
+
+<script>
+const form = document.querySelector("form")
+
+form.addEventListener('submit' , async (e)=> {
+  e.preventDefault();
+
+try {
+  const result= await fetch('https://benoitbrand.herokuapp.com/createArticle', {
+  method: 'post',
+  headers: {
+    'content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    title:form.title.value,
+    body: form.body.value
+  }),
+})
+const data = await result.json()
+location.href="dashboard.html"
+} catch (error) {
+  console.log(error)
+}
+ 
+});
+
+
+</script>
+
+
   </body>
 </html>
