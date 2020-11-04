@@ -21,66 +21,18 @@
 
     <!-- Posts container which all posts -->
 <div class="post-container">
-<div class="card">
-    <img src="../images/rwigema.jpeg" alt="post image">
-    <h2 class="post-title">Lorem ipsum dolor sit amet consecteturagnam nulla consequatur!</h2>
+<!-- <div class="card">
+ <a href="./readpost.html">  <img src="../images/rwigema.jpeg" alt="post image"></a> 
+    <a href="./readpost.html"><h2 class="post-title">Rwandan hero!</h2></a>
+
     <p class="time">5 days ago</p>
     <div class="details">
         <p class="one-detail"><span><i class="fa fa-thumbs-up"></i></span> 3</p>
         <p class="one-detail"><span><i class="fa fa-comments"></i></span>6</p>
         <p class="one-detail"><span><i class="fa fa-eye"></i></span>9</p>
     </div>
-</div>
-<div class="card">
-    <img src="../images/rwigema.jpeg" alt="post image">
-    <h2 class="post-title">Lorem ipsum dolor sit amet consecteturagnam nulla consequatur!</h2>
-    <p class="time">5 days ago</p>
-    <div class="details">
-        <p class="one-detail"><span><i class="fa fa-thumbs-up"></i></span> 3</p>
-        <p class="one-detail"><span><i class="fa fa-comments"></i></span>6</p>
-        <p class="one-detail"><span><i class="fa fa-eye"></i></span>9</p>
-    </div>
-</div>
-<div class="card">
-    <img src="../images/rwigema.jpeg" alt="post image">
-    <h2 class="post-title">Lorem ipsum dolor sit amet consecteturagnam nulla consequatur!</h2>
-    <p class="time">5 days ago</p>
-    <div class="details">
-        <p class="one-detail"><span><i class="fa fa-thumbs-up"></i></span> 3</p>
-        <p class="one-detail"><span><i class="fa fa-comments"></i></span>6</p>
-        <p class="one-detail"><span><i class="fa fa-eye"></i></span>9</p>
-    </div>
-</div>
-<div class="card">
-    <img src="../images/rwigema.jpeg" alt="post image">
-    <h2 class="post-title">Lorem ipsum dolor sit amet consecteturagnam nulla consequatur!</h2>
-    <p class="time">5 days ago</p>
-    <div class="details">
-        <p class="one-detail"><span><i class="fa fa-thumbs-up"></i></span> 3</p>
-        <p class="one-detail"><span><i class="fa fa-comments"></i></span>6</p>
-        <p class="one-detail"><span><i class="fa fa-eye"></i></span>9</p>
-    </div>
-</div>
-<div class="card">
-    <img src="../images/rwigema.jpeg" alt="post image">
-    <h2 class="post-title">Lorem ipsum dolor sit amet consecteturagnam nulla consequatur!</h2>
-    <p class="time">5 days ago</p>
-    <div class="details">
-        <p class="one-detail"><span><i class="fa fa-thumbs-up"></i></span> 3</p>
-        <p class="one-detail"><span><i class="fa fa-comments"></i></span>6</p>
-        <p class="one-detail"><span><i class="fa fa-eye"></i></span>9</p>
-    </div>
-</div>
-<div class="card">
-    <img src="../images/rwigema.jpeg" alt="post image">
-    <h2 class="post-title">Lorem ipsum dolor sit amet consecteturagnam nulla consequatur!</h2>
-    <p class="time">5 days ago</p>
-    <div class="details">
-        <p class="one-detail"><span><i class="fa fa-thumbs-up"></i></span> 3</p>
-        <p class="one-detail"><span><i class="fa fa-comments"></i></span>6</p>
-        <p class="one-detail"><span><i class="fa fa-eye"></i></span>9</p>
-    </div>
-</div>
+</div> -->
+
 </div>
 <!-- FOOTER -->
 <footer class="footer">
@@ -95,5 +47,30 @@
 <p class="copy-right">&COPY;2020 by Ir.Benoit</Ir></p>
 
 </footer>
+<script>
+    fetch("https://benoitbrand.herokuapp.com/fetchArticles").then(res=>{
+  res.json().then(data=>{
+const posts= data.posts
+
+let postHtml=""
+posts.forEach(post=>{
+  postHtml +=`<div class="card">
+ <a href="./readpost.html?id=${post._id}">  <img src="${post.picture}" alt="post image"></a> 
+    <a href="./readpost.html?id=${post._id}"><h2 class="post-title">${post.title}</h2></a>
+
+    <p class="time">5 days ago</p>
+    <div class="details">
+        <p class="one-detail"><span><i class="fa fa-thumbs-up"></i></span> ${post.likes}</p>
+        <p class="one-detail"><span><i class="fa fa-comments"></i></span>${post.commentsCount}</p>
+        <p class="one-detail"><span><i class="fa fa-eye"></i></span>${post.views}</p>
+    </div>
+</div> `
+})
+const postContainer = document.querySelector(".post-container")
+postContainer.innerHTML=postHtml
+  })
+})
+   
+    </script>
 </body>
 </html>
