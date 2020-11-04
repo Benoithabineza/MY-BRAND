@@ -9,7 +9,7 @@ body{
    font-size: 1.1rem;
 }
 
-/* this chznges nav bar */
+/* this changes nav bar */
 .nav{
     background-color: #751212;
     display: flex;
@@ -39,8 +39,8 @@ a:hover{
 /* landing page*/
 .landing-page{
     max-width: 1300px;
-    margin: auto;
-    margin-top: 2rem;
+    margin:  auto;
+    margin-bottom: 2rem;
 
 }
 .intro{
@@ -69,8 +69,7 @@ a:hover{
     margin: auto 2rem;
 }
 .right{
-margin: auto
-;
+align-items: center;
 }
 .about-me{
     font-size: 3rem;
@@ -92,7 +91,7 @@ margin: auto
 }
 .contact-form{
     max-width: 500px;
-    margin: auto;
+    margin: 2rem auto;
     box-shadow: 0 0 5px white;
     padding: 1rem;
     /* text-align: center; */
@@ -122,4 +121,90 @@ input, textarea{
 }
 .experience li{
     margin-bottom: 1rem;
+}
+/* BLOG*/
+
+.post-container{
+    max-width: 1200px;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+    grid-gap: 1rem;
+ 
+}
+img{
+    width: 100%;
+}
+.card{
+    border: 1px solid yellow;
+    padding: 1rem;
+    border-radius: .4rem;
+}
+
+.details{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding: .5rem;
+    background-color:#751212;
+}
+.time{
+    margin-top: 1rem;
+    font-size: .8rem;
+    text-align: center;
+}
+.post-title{
+    font-size: 1.4rem;
+
+}
+.footer{
+    background-color:rgb(133, 34, 34);
+    text-align: center;
+    padding: 1rem;
+
+}
+.copy-right{
+    color: yellow;
+}
+.about-page{
+    margin-top: 2rem;
+}
+
+
+/* Login form */
+.logout{
+    cursor: pointer;
+}
+.login-form{
+    background-color: black;
+    border: 1px solid yellow;
+    border-radius: 5px;
+    max-width: 500px;
+    margin: 10rem auto;
+    padding: 1rem;
+    
+    
+}
+.top{
+    display:flex;
+    justify-content: space-between;
+
+}
+.buttom{
+    display:flex;
+    justify-content: space-between;
+    
+}
+.message{
+    margin: 1rem 0;
+}
+.querie{
+    border: 1px solid yellow;
+    padding: 1rem;
+    border-radius: .5rem;
+    margin: 1rem 0 ;
+}
+.queries-container{
+    max-width: 600px;
+    margin: auto;
 }
